@@ -1,4 +1,5 @@
 import adminRouter from './admin.routes.js'
+import loginRouter from './login.routes.js'
 import memberRouter from './member.routes.js'
 import sportRouter from './sports.routes.js'
 import teamRouter from './team.routes.js'
@@ -10,7 +11,7 @@ function routes(app) {
       message: 'Welcome to the SporTech'
     })
   )
-  
+  app.use(loginRouter)
   app.use(userRouter)
   app.use(adminRouter)
   app.use(sportRouter)
