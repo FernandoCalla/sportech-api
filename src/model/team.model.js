@@ -17,6 +17,8 @@ const teamSchema = new mongoose.Schema(
         }
     ],
     sport: {type:mongoose.Schema.Types.ObjectId,ref:"Sport", required: true},
+    imagen: { type: String},
+    imagenID: { type: String}
   },
   { timestamps: true }
 )

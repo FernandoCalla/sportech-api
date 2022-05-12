@@ -9,9 +9,9 @@ const omitPassword = (user) => {
 
 export async function createUser(input) {
   try {
-    const {email,password}=input
+    const {email,password,rol}=input
     const hashPassword=await bcrypt.hash(password,10)
-    const newUser={email,password:hashPassword}
+    const newUser={email,rol,password:hashPassword}
     const user = await User.create(newUser)
     return omitPassword(user._doc)
   } catch (error) {
