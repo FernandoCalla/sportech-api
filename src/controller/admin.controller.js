@@ -2,7 +2,7 @@ import { createAdmin, findAdminById, findAdminByIdAndDelete, findAdminByIdAndEdi
 
 export async function createAdminHandler(req, res) {
   try {
-    const admin = await createAdmin(req.body)
+    const admin = await createAdmin(req)
     res.status(201).json({ message: 'Admin created', admin })
   } catch (error) {
     res.status(400).json({ message: error.message })

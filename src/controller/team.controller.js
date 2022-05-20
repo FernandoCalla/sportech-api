@@ -2,7 +2,7 @@ import { createTeam, findTeamById, findTeamByIdAndDelete, findTeamByIdAndEdit, f
 
 export async function createTeamHandler(req, res) {
   try {
-    const team = await createTeam(req.body)
+    const team = await createTeam(req)
     res.status(201).json({ message: 'Team created', team })
   } catch (error) {
     res.status(400).json({ message: error.message })

@@ -2,7 +2,7 @@ import { createMember, findMemberById, findMemberByIdAndDelete, findMemberByIdAn
 
 export async function createMemberHandler(req, res) {
   try {
-    const member = await createMember(req.body)
+    const member = await createMember(req)
     res.status(201).json({ message: 'Member created', member })
   } catch (error) {
     res.status(400).json({ message: error.message })

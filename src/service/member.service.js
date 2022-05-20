@@ -1,11 +1,15 @@
 import Member from '../model/member.model.js'
+import cloudinary, { uploads } from '../utils/cloudinary.js'
 
 export async function createMember(input) {
+  const uploader = async (path) => await uploads(path, 'sportech-members-images')
   try {
-    const member = await Member.create(input)
+    const { url, cloudinaryId } = await uploader(input.file.path)
+    const newData={...input.body,photo:url,photoIdCloudinary:cloudinaryId}
+    const member = await Member.create(newData)
     return member
   } catch (error) {
-    throw new Error(errorMessage)
+    throw new Error(error)
   }
 }
 export async function findMembers() {
