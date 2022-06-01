@@ -10,6 +10,8 @@ const tournamentSchema = new mongoose.Schema(
     tournamentStartDate: {type: Date, required:true},
     tournamentEndDate: {type: Date, required:true},
     sport: {type:mongoose.Schema.Types.ObjectId,ref:"Sport", required: true},
+    photo: { type: String},
+    photoIdCloudinary: { type: String}
   },
   { timestamps: true }
 )

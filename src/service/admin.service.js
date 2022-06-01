@@ -1,11 +1,15 @@
 import Admin from '../model/admin.model.js'
+import cloudinary, { uploads } from '../utils/cloudinary.js'
 
 export async function createAdmin(input) {
+  const uploader = async (path) => await uploads(path, 'sportech-admin-images')
   try {
-    const admin = await Admin.create(input)
+    const { url, cloudinaryId } = await uploader(input.file.path)
+    const newData={...input.body,photo:url,photoIdCloudinary:cloudinaryId}
+    const admin = await Admin.create(newData)
     return admin
   } catch (error) {
-    throw new Error(errorMessage)
+    throw new Error(error)
   }
 }
 export async function findAdmins(query) {
@@ -15,6 +19,11 @@ export async function findAdmins(query) {
 
 export async function findAdminById(query) {
   const admin= await Admin.findById(query)
+  return admin 
+}
+
+export async function findAdminByIdUser(query) {
+  const admin= await Admin.find({user:query})
   return admin 
 }
 
