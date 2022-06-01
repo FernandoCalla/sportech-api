@@ -6,7 +6,7 @@ import routes from './routes/index.js'
 import cors from 'cors';
 
 let app = express();
-const port=4000
+const port=process.env.PORT || 4000
 const server = http.createServer(app)
 
 app.use(json())
