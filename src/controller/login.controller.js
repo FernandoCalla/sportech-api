@@ -17,6 +17,7 @@ export async function loginHandler(req, res) {
     }
     const token=jwt.sign(userToken,process.env.SECRET,{expiresIn:60*60*24*7})
     res.status(200).json({
+        id:user._id,
         email:user.email,
         rol:user.rol,
         token:token

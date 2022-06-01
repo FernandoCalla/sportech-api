@@ -22,6 +22,11 @@ export async function findAdminById(query) {
   return admin 
 }
 
+export async function findAdminByIdUser(query) {
+  const admin= await Admin.find({user:query})
+  return admin 
+}
+
 export async function findAdminByIdAndEdit(query,data) {
   const admin= await Admin.findByIdAndUpdate(query,data)
   return admin 

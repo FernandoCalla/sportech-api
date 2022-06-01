@@ -1,4 +1,4 @@
-import { createAdmin, findAdminById, findAdminByIdAndDelete, findAdminByIdAndEdit, findAdmins } from '../service/admin.service.js'
+import { createAdmin, findAdminById, findAdminByIdAndDelete, findAdminByIdAndEdit, findAdminByIdUser, findAdmins } from '../service/admin.service.js'
 
 export async function createAdminHandler(req, res) {
   try {
@@ -21,6 +21,15 @@ export async function findAdminsHandler(req, res) {
 export async function findAdminByIdHandler(req, res) {
   try {
     const admin = await findAdminById(req.params.id)
+    res.status(200).json({ message: 'Admin retrived', admin })
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+}
+
+export async function findAdminByIdUserHandler(req, res) {
+  try {
+    const admin = await findAdminByIdUser(req.params.id)
     res.status(200).json({ message: 'Admin retrived', admin })
   } catch (error) {
     res.status(400).json({ message: error.message })

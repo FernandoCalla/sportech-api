@@ -12,14 +12,26 @@ export async function createMember(input) {
     throw new Error(error)
   }
 }
+
 export async function findMembers() {
   const members= await Member.find({})
+  for (const member of members) {
+    await member.populate('sport')
+  }
   return members 
 }
 
 export async function findMemberById(query) {
   const member= await Member.findById(query)
   return member 
+}
+
+export async function findMemberByIdUser(query) {
+  const members= await Member.find({user:query})
+  for (const member of members) {
+    await member.populate('sport')
+  }
+  return members
 }
 
 export async function findMemberByIdAndEdit(query,data) {
@@ -30,6 +42,17 @@ export async function findMemberByIdAndEdit(query,data) {
 export async function findMemberByIdAndDelete(query) {
   await Member.findByIdAndDelete(query)
   return "Member deleted"
+}
+
+export async function findMemberByIdAndAddComment(query,body) {
+  const member= await Member.findById(query)
+  console.log("m",member,"body",body)
+  const newMember={
+    ...member._doc,comments:[...member.comments,body.comment]
+  }
+  console.log("N",newMember)
+  const memberUpdated= await Member.findByIdAndUpdate(query,newMember)
+  return memberUpdated
 }
 
 

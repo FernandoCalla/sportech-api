@@ -16,6 +16,7 @@ const memberSchema = new mongoose.Schema(
     user: {type:mongoose.Schema.Types.ObjectId,ref:"User", required: true},
     state:{type:Number, default: 0}, //0 pending, 1 accept , 2 disabled
     typeMember:{type: Number, required: true}, //0 player 1 trainner
+    comments:[{type: String}],
   },
   { timestamps: true }
 )

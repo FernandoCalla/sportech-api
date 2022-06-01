@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const matchSchema = new mongoose.Schema(
   {
-    date: { type: Date, required: true,  },
+    dateTime: { type: Date, required: true,  },
     teamA: {type:mongoose.Schema.Types.ObjectId,ref:"Team", required: true},
     teamB: {type:mongoose.Schema.Types.ObjectId,ref:"Team", required: true},
     location: {type: String, required: true},
