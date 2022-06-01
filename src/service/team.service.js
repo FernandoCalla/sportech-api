@@ -22,6 +22,9 @@ export async function findTeams() {
 
 export async function findTeamById(query) {
   const team= await Team.findById(query)
+    await team.populate('sport')
+    await team.populate('players')
+    await team.populate('trainers')
   return team 
 }
 
