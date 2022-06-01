@@ -23,7 +23,7 @@ export async function loginHandler(req, res) {
             rol:user.rol,
             token:token
         })
-    }catch{
-        res.status(400).json({ message: "Error al hacer login" })
+    }catch(error){
+        res.status(400).json({ message: error.message })
     }
   }
